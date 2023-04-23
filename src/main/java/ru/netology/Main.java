@@ -41,9 +41,9 @@ public class Main {
             thread.join(); // Зависаем, ждём когда поток, объект которого лежит в thread, завершится
         }
 
+        // Находим наиболее частое количество повторов и сколько маршрутов содержит данное число повторов
         int meetingFrequency = 0;
         int maximumNumberRepetitions = 0;
-
         for (Map.Entry<Integer, Integer> entry : sizeToFreq.entrySet()) {
             int key = entry.getKey();
             int value = entry.getValue();
@@ -52,10 +52,12 @@ public class Main {
                 maximumNumberRepetitions = value;
             }
         }
+        // Убираем найденную пару из Map для дальнейшего корректного вывода остальных повторов в цикле
         sizeToFreq.remove(meetingFrequency);
 
         System.out.println("\nСамое частое количество повторений " + meetingFrequency +
-                " (встретилось " + maximumNumberRepetitions + " раз)");
+                " (встретилось " + maximumNumberRepetitions + " раз)" +
+                "\nДругие размеры:");
 
         for (Map.Entry<Integer, Integer> entry : sizeToFreq.entrySet()) {
             System.out.println("- " + entry.getKey() + " (" + entry.getValue() + " раз)");
